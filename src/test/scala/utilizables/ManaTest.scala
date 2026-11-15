@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 class ManaTest extends munit.FunSuite:
   var pocion: Mana = null
 

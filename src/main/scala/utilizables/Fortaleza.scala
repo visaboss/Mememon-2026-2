@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package utilizables
 import unidades.Personaje
 class Fortaleza(nombre:String) extends PocionComun(nombre):

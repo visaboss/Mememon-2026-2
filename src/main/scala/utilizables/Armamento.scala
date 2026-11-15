@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package utilizables
 import acciones.AbstractTarget
 import unidades.Personaje

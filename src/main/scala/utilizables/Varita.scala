@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 import unidades.Personaje
 
 class Varita(nombre: String, ataque: Int, peso: Double, prop: Personaje, ataqueM: Int) extends ArmaMagic(nombre, ataque, peso, prop, ataqueM):

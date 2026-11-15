@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 class MagoNegroTest extends munit.FunSuite:
   var mago: MagoNegro = null
 

@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package mapajuego
 import unidades.Caballero
 

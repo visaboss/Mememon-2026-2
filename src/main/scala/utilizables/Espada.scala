@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 import unidades.Personaje
 
 class Espada(nombre: String,ataque: Int,peso: Int,prop: Personaje) extends Arma(nombre, ataque, peso, prop):

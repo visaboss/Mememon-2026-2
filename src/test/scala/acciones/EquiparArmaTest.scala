@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package acciones
-
 import utilizables.{Espada,Daga}
 import unidades.Caballero
 

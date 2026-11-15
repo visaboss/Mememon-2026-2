@@ -1,6 +1,5 @@
+package cl.uchile.dcc
 package acciones
-
-
 trait Source:
   val nombre: String
 

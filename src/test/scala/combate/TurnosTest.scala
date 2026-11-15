@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package combate
-
 import unidades.{Caballero, Enemigo}
 import utilizables.Espada
 

@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package jugadores
-
 import unidades.{Caballero, Enemigo}
 
 class JugadoresTest extends munit.FunSuite:

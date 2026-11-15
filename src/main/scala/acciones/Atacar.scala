@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package acciones
 import unidades.{Enemigo, Personaje}
 

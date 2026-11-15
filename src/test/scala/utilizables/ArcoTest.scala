@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 import unidades.{Caballero, Personaje}
 
 class ArcoTest extends munit.FunSuite:

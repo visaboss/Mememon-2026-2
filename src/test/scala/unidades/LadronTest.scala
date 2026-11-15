@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 class LadronTest extends munit.FunSuite:
   var ladron: Ladron = null
 

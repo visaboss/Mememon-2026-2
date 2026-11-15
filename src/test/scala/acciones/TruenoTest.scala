@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package acciones
-
 import mapajuego.Panel
 import unidades.{Caballero, Enemigo, MagoBlanco, MagoNegro}
 import utilizables.{Daga, Varita}

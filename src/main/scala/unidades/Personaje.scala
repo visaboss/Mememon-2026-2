@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package unidades
 import scala.collection.mutable
 import utilizables.Arma

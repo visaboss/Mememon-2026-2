@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package acciones
 import acciones.{AbstractAccion, Target}
 import unidades.PersonajeMagico

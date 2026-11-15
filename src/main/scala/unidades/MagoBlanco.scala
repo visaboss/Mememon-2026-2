@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package unidades
 import acciones.{Accion, Curacion, Purificacion, Target}
 import utilizables.Arma

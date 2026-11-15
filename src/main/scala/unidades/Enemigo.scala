@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 import acciones.{Accion, Atacar, Moverse, Target}
 //capaz despues al igual que con personajes se va a tener que hacer una diferencia entre enemigo normal y magico
 class Enemigo(nombre: String, hp: Int, defensa: Int, peso: Double, var attackPoints: Int) extends AbstractUnidad(nombre, hp, defensa, peso):

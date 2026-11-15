@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package mapajuego
-
 import scala.collection.mutable
 import acciones.AbstractTarget
 import unidades.Unidad

@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 class FuerzaMagicaTest extends munit.FunSuite:
   var pocion: FuerzaMagica = null
 

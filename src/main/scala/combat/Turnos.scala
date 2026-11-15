@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package combate
-
 import scala.collection.mutable
 import unidades.Unidad
 

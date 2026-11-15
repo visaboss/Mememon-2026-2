@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package acciones
-
 class PurificacionTest extends munit.FunSuite:
   test("Purificacion built with default cost"):
     val accion = new Purificacion("A")

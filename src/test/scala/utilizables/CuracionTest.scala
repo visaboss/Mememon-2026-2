@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 class CuracionTest extends munit.FunSuite:
   var pocion: Curacion = null
 

@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 class EnemigosTest extends munit.FunSuite:
   var enemigo: Enemigo= null
 

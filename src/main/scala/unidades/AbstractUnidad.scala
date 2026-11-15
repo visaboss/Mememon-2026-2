@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 import acciones.{AbstractTarget, Accion}
 import mapajuego.Panel
 

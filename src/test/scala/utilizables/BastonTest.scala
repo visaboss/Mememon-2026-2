@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package utilizables
-
 import unidades.{Caballero, Personaje}
 
 class BastonTest extends munit.FunSuite:

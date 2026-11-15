@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 import acciones.{Accion, Meteorito, Target, Trueno}
 import utilizables.Arma
 

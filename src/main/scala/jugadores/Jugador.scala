@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package jugadores
 import unidades.{Personaje, PersonajeMagico, Unidad}
 import scala.collection.mutable

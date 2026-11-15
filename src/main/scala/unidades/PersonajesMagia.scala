@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 abstract class PersonajeMagico(nombre: String, hp: Int, defensa: Int, peso: Double, var manaPoints: Double) extends  Personaje(nombre, hp, defensa, peso):
   val maxManaPoints: Double = manaPoints
   private var fuerzaMagicaActiva: Boolean = false

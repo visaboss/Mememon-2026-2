@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 class ArqueroTest extends munit.FunSuite:
   var arquero: Arquero = null
 

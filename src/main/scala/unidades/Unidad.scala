@@ -1,5 +1,5 @@
-package  unidades
-
+package cl.uchile.dcc
+package unidades
 import acciones.{Source, Target}
 import mapajuego.Panel
 //T esta tiene el mismo-ish nombre que el nombre de carpeta, por lo que de aqui sale

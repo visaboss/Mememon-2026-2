@@ -1,5 +1,5 @@
+package cl.uchile.dcc
 package unidades
-
 class FuentesTest extends munit.FunSuite:
   var caballero: Caballero = null
   var negro: MagoNegro = null

@@ -23,7 +23,7 @@ class Turnos:
   def barraDe(unidad: Unidad): Double = barras(unidad)
 
 
-  def maxbarraDe(unidad: Unidad): Double = unidad.BarraAccion
+  def maxBarraDe(unidad: Unidad): Double = unidad.barraAccion
 
   def reiniciarBarra(unidad: Unidad): Unit =
     barras(unidad) = 0.0
@@ -34,7 +34,7 @@ class Turnos:
       barras(unidad) = barras(unidad) + cantidad
 
   private def completoBarra(unidad: Unidad): Boolean =
-    barras(unidad) >= unidad.BarraAccion
+    barras(unidad) >= unidad.barraAccion
 
   private def unidadesConTurno: List[Unidad] =
     val completadas: mutable.ListBuffer[Unidad] = mutable.ListBuffer()
@@ -44,7 +44,7 @@ class Turnos:
         completadas += unidad
 
     def excedente(unidad: Unidad): Double =
-      barras(unidad) - unidad.BarraAccion
+      barras(unidad) - unidad.barraAccion
 
     val ordenadas: mutable.ListBuffer[Unidad] = mutable.ListBuffer()
     while completadas.nonEmpty do

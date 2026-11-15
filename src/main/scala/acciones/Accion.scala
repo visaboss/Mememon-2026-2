@@ -24,11 +24,11 @@ abstract class Hechizo(override val nombre: String, var costoMana: Int)  extends
 
   protected def aplicarEfecto(danioMagico: Int, objetivo: Target): Boolean
 
-abstract class MagiaOscura(nombre: String, ManaPoints:Int) extends Hechizo(nombre, ManaPoints):
+abstract class MagiaOscura(nombre: String, costo:Int) extends Hechizo(nombre, costo):
   override def ejecutadaPorMagoNegro(fuente: MagoNegro, objetivo: Target): Boolean =
     lanzar(fuente, objetivo)
 
-abstract class MagiaDeLuz(nombre:String, ManaPoints:Int) extends Hechizo(nombre, ManaPoints):
+abstract class MagiaDeLuz(nombre:String, costo:Int) extends Hechizo(nombre, costo):
   override def ejecutadaPorMagoBlanco(fuente: MagoBlanco, objetivo: Target): Boolean =
     lanzar(fuente, objetivo)
 

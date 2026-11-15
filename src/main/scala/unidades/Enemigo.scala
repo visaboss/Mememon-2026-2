@@ -3,7 +3,7 @@ package unidades
 import acciones.{Accion, Atacar, Moverse, Target}
 //capaz despues al igual que con personajes se va a tener que hacer una diferencia entre enemigo normal y magico
 class Enemigo(nombre: String, hp: Int, defensa: Int, peso: Double, var attackPoints: Int) extends AbstractUnidad(nombre, hp, defensa, peso):
-  override def BarraAccion: Double = weight
+  override def barraAccion: Double = weight
   override def equals(obj: Any): Boolean =
     if getClass == obj.getClass then
       val other = obj.asInstanceOf[Enemigo]

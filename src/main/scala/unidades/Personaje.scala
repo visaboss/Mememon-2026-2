@@ -23,7 +23,7 @@ abstract class Personaje(nombre: String, hp:Int, defensa: Int, peso: Double) ext
   // aqui deber ir slot de arma, unica supongo, e inventario(lista de cosas supongo, de utilizables)
 
 
-  override def BarraAccion: Double =
+  override def barraAccion: Double =
     if slotArma.isDefined then
       weight + 0.5 * slotArma.get.weight
     else

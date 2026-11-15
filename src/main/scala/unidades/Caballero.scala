@@ -12,5 +12,5 @@ import utilizables.Arma
 //  var inventarioUtilizables: utilizables = mutable.ListBuffer[armamento]()
 
 
-class Caballero(nombre: String,HpPoints: Int,DefensePoints: Int,weight: Int) extends Personaje(nombre, HpPoints, DefensePoints, weight):
+class Caballero(nombre: String,hp: Int,defensa: Int,peso: Int) extends Personaje(nombre, hp, defensa, peso):
   override def puedeEquipar(arma: Arma): Boolean = arma.equipablePorCaballero

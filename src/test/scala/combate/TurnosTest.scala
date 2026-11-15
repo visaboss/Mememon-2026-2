@@ -46,14 +46,14 @@ class TurnosTest extends munit.FunSuite:
     assert(turnos.unidadesEnBatalla == List(pesado))
 
   test("barra máxima de enemigo es su peso"):
-    assert(turnos.maxbarraDe(pesado) == 40.0)
+    assert(turnos.maxBarraDe(pesado) == 40.0)
 
   test("barra máxima de personaje sin arma espeso"):
-    assert(turnos.maxbarraDe(caballero) == 70.0)
+    assert(turnos.maxBarraDe(caballero) == 70.0)
 
   test("barra máxima de  personaje con arma es la correcta"):
     caballero.slotArma = Some(new Espada("Filo", 25, 8, caballero))
-    assert(turnos.maxbarraDe(caballero) == 74.0)
+    assert(turnos.maxBarraDe(caballero) == 74.0)
 
   test("unidad agregada empieza barra en 0"):
     turnos.agregarUnidad(liviano)

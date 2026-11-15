@@ -2,7 +2,7 @@ package unidades
 import acciones.{Accion, Curacion, Purificacion, Target}
 import utilizables.Arma
 
-class MagoBlanco(nombre: String,HpPoints:Int,DefensePoints: Int,weight:Int,ManaPoints:Int) extends PersonajeMagico(nombre, HpPoints, DefensePoints, weight, ManaPoints):
+class MagoBlanco(nombre: String,hp:Int,defensa: Int,peso:Int,mana:Int) extends PersonajeMagico(nombre, hp, defensa, peso, mana):
   override def acciones: List[Accion] =
     super.acciones ++ List(new Curacion("Curacion"), new Purificacion("Purificacion"))
 

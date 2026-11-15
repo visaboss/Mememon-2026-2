@@ -19,6 +19,6 @@ trait Unidad extends Source, Target:
   var defensePoints: Int
   var weight:Double
   var panelActual: Option[Panel]
-  def BarraAccion : Double
+  def barraAccion : Double
 
   def recibirDanioMagico(danio: Int): Unit

@@ -8,10 +8,10 @@ class EnemigosTest extends munit.FunSuite:
 
   test("Un Enemigo se crea con los valores correctos"):
     assert(enemigo.nombre == "Goblin")
-    assert(enemigo.HpPoints == 50)
-    assert(enemigo.DefensePoints == 12)
+    assert(enemigo.hpPoints == 50)
+    assert(enemigo.defensePoints == 12)
     assert(enemigo.weight == 30.0)
-    assert(enemigo.AttackPoints == 5)
+    assert(enemigo.attackPoints == 5)
 
   test("Dos Enemigos con los mismos parámetros son iguales"):
     val otro = new Enemigos("Goblin", 50, 12, 30, 5)
@@ -35,5 +35,5 @@ class EnemigosTest extends munit.FunSuite:
 
   test("enemigo dañado no igual a sano"):
     val herido = new Enemigos("Goblin", 50, 12, 30, 5)
-    herido.HpPoints = 10
+    herido.hpPoints = 10
     assertNotEquals(herido, new Enemigos("Goblin", 50, 12, 30, 5))

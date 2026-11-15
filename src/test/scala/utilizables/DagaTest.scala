@@ -14,7 +14,7 @@ class DagaTest extends munit.FunSuite:
 
   test("Una Daga se crea con los valores correctos"):
     assert(daga.nombre == "Filo")
-    assert(daga.AttackPoints == 30)
+    assert(daga.attackPoints == 30)
     assert(daga.weight == 2.0)
     assert(daga.owner == arthur)
 

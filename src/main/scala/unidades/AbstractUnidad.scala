@@ -1,20 +1,20 @@
 package unidades
 
-import acciones.{AbstractTarget, accion}
+import acciones.{AbstractTarget, Accion}
 import mapajuego.Panel
 
 
-abstract class AbstractUnidad(override val nombre: String, var HpPoints: Int,
-                              var DefensePoints: Int, var weight: Double)
+abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
+                              var defensePoints: Int, var weight: Double)
   extends AbstractTarget, Unidad:
 
   /** Puntos de vida máximos: la vida con la que se creó la unidad. */
-  val maxHpPoints: Int = HpPoints
+  val maxHpPoints: Int = hpPoints
 
   var panelActual: Option[Panel] = None
 
-  override def buscarAccion(nombreAccion: String): Option[accion] =
-    var encontrada: Option[accion] = None
+  override def buscarAccion(nombreAccion: String): Option[Accion] =
+    var encontrada: Option[Accion] = None
     for accion <- acciones do
       if encontrada.isEmpty && accion.nombre == nombreAccion then
         encontrada = Some(accion)
@@ -22,7 +22,7 @@ abstract class AbstractUnidad(override val nombre: String, var HpPoints: Int,
 
 
   override def recibirAtaque(danio: Int): Boolean =
-    perderVida(danio - DefensePoints)
+    perderVida(danio - defensePoints)
     true
 
   override def recibirTrueno(danioMagico: Int): Boolean =
@@ -34,10 +34,10 @@ abstract class AbstractUnidad(override val nombre: String, var HpPoints: Int,
 
 
   def curar(cantidad: Int): Unit =
-    HpPoints = HpPoints + cantidad
-    if HpPoints > maxHpPoints then HpPoints = maxHpPoints
+    hpPoints = hpPoints + cantidad
+    if hpPoints > maxHpPoints then hpPoints = maxHpPoints
 
   protected def perderVida(cantidad: Int): Unit =
     if cantidad > 0 then
-      HpPoints = HpPoints - cantidad
-      if HpPoints < 0 then HpPoints = 0
+      hpPoints = hpPoints - cantidad
+      if hpPoints < 0 then hpPoints = 0

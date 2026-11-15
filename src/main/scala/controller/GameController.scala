@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package controller
 
-import acciones.{accion, Target}
+import acciones.{Accion, Target}
 import combate.Turnos
 import unidades.Unidad
 
@@ -36,7 +36,7 @@ class GameController:
       actual = turnos.unidadConTurno
     actual
 
-  def accionesDe(unidad: Unidad): List[accion] = unidad.acciones
+  def accionesDe(unidad: Unidad): List[Accion] = unidad.acciones
 
 
   def ejecutarAccion(nombreAccion: String, objetivo: Target): Boolean =

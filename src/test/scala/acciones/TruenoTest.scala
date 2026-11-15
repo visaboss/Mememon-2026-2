@@ -12,38 +12,38 @@ class TruenoTest extends munit.FunSuite:
   override def beforeEach(context: BeforeEach): Unit =
     trueno = new Trueno("Trueno")
     negro = new MagoNegro("Vivi", 60, 4, 40, 50)
-    negro.SlotArma = Some(new Varita("Rayo", 10, 1, negro, 30))
+    negro.slotArma = Some(new Varita("Rayo", 10, 1, negro, 30))
     enemigo = new Enemigos("Goblin", 100, 10, 30, 20)
 
   test("Trueno built with default cost"):
     val accion = new Trueno("A")
     assertEquals(accion.nombre, "A")
-    assertEquals(accion.ManaPoints, 20)
+    assertEquals(accion.costoMana, 20)
 
   test("Trueno reduce la vida del objetivo en el daño magico, sin considerar defensa"):
     assert(negro.doAction(trueno, enemigo))
-    assert(enemigo.HpPoints == 70)
+    assert(enemigo.hpPoints == 70)
 
   test("Lanzar trueno cuesta 20 de mana"):
     negro.doAction(trueno, enemigo)
-    assert(negro.ManaPoints == 30.0)
+    assert(negro.manaPoints == 30.0)
 
   test("Sin mana suficiente no se puede lanzar Trueno"):
-    negro.ManaPoints = 10
+    negro.manaPoints = 10
     assert(!negro.doAction(trueno, enemigo))
-    assert(enemigo.HpPoints == 100)
-    assert(negro.ManaPoints == 10.0)
+    assert(enemigo.hpPoints == 100)
+    assert(negro.manaPoints == 10.0)
 
   test("Con el mana justo si se puede lanzar"):
-    negro.ManaPoints = 20
+    negro.manaPoints = 20
     assert(negro.doAction(trueno, enemigo))
-    assert(negro.ManaPoints == 0.0)
+    assert(negro.manaPoints == 0.0)
 
   test("Un mago con un arma no magica hace 0 de daño magico"):
     val otro = new MagoNegro("Kuja", 60, 4, 40, 50)
-    otro.SlotArma = Some(new Daga("Filo", 30, 2, otro))
+    otro.slotArma = Some(new Daga("Filo", 30, 2, otro))
     assert(otro.doAction(trueno, enemigo))
-    assert(enemigo.HpPoints == 100)
+    assert(enemigo.hpPoints == 100)
 
   test("Un mago sin arma hace 0 de daño magico"):
     val otro = new MagoNegro("Kuja", 60, 4, 40, 50)
@@ -52,7 +52,7 @@ class TruenoTest extends munit.FunSuite:
   test("La fuerza mágica aumenta el daño en 50porcientoy se pierde al lanzar"):
     negro.recibirFuerzaMagica()
     assert(negro.doAction(trueno, enemigo))
-    assert(enemigo.HpPoints == 55)
+    assert(enemigo.hpPoints == 55)
     assert(!negro.tieneFuerzaMagica)
 
   test("Un mago blanco no puede lanzar trueno"):
@@ -69,4 +69,4 @@ class TruenoTest extends munit.FunSuite:
 
   test("trueno no se puede lanzar sobre un panel y no gasta mana"):
     assert(!negro.doAction(trueno, new Panel(1, 1)))
-    assert(negro.ManaPoints == 50.0)
+    assert(negro.manaPoints == 50.0)

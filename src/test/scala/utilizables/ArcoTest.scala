@@ -14,7 +14,7 @@ class ArcoTest extends munit.FunSuite:
 
   test("Un Arco se crea con los valores correctos"):
     assert(arco.nombre == "Halcón")
-    assert(arco.AttackPoints == 40)
+    assert(arco.attackPoints == 40)
     assert(arco.weight == 3.0)
     assert(arco.owner == arthur)
 

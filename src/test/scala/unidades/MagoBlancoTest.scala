@@ -8,13 +8,13 @@ class MagoBlancoTest extends munit.FunSuite:
 
   test("Un Mago Blanco se crea con los valores correctos"):
     assert(mago.nombre == "Rosa")
-    assert(mago.HpPoints == 60)
-    assert(mago.DefensePoints == 4)
+    assert(mago.hpPoints == 60)
+    assert(mago.defensePoints == 4)
     assert(mago.weight == 45.0)
-    assert(mago.ManaPoints == 50)
+    assert(mago.manaPoints == 50)
 
   test("Un Mago Blanco nuevo no tiene arma equipada"):
-    assert(mago.SlotArma == None)
+    assert(mago.slotArma == None)
 
   test("Un Mago Blanco nuevo tiene el inventario vacío"):
     assert(mago.inventarioUtilizables.isEmpty)

@@ -8,12 +8,12 @@ class LadronTest extends munit.FunSuite:
 
   test("Un Ladrón se crea con los valores correctos"):
     assert(ladron.nombre == "Zidane")
-    assert(ladron.HpPoints == 70)
-    assert(ladron.DefensePoints == 6)
+    assert(ladron.hpPoints == 70)
+    assert(ladron.defensePoints == 6)
     assert(ladron.weight == 55.0)
 
   test("Un Ladrón nuevo no tiene arma equipada"):
-    assert(ladron.SlotArma == None)
+    assert(ladron.slotArma == None)
 
   test("Un Ladrón nuevo tiene el inventario vacío"):
     assert(ladron.inventarioUtilizables.isEmpty)

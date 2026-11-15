@@ -15,7 +15,7 @@ class BarraAccionTest extends munit.FunSuite:
     assertEquals(caballero.BarraAccion, 70.0)
     
   test("Personaje con arma suma mitad peso de arma"):
-    caballero.SlotArma = Some(new Espada("C", 25,8, caballero))
+    caballero.slotArma = Some(new Espada("C", 25,8, caballero))
     assertEquals(caballero.BarraAccion, 70.0 +0.5*8)
     
   test("Enemigo tiene barraAccion igual a su peso"):

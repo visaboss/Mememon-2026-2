@@ -14,7 +14,7 @@ class EspadaTest extends munit.FunSuite:
 
   test("Una Espada se crea con los valores correctos"):
     assert(espada.nombre == "Excalibur")
-    assert(espada.AttackPoints == 50)
+    assert(espada.attackPoints == 50)
     assert(espada.weight == 5.0)
     assert(espada.owner == arthur)
 

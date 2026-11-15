@@ -52,7 +52,7 @@ class TurnosTest extends munit.FunSuite:
     assert(turnos.maxbarraDe(caballero) == 70.0)
 
   test("barra máxima de  personaje con arma es la correcta"):
-    caballero.SlotArma = Some(new Espada("Filo", 25, 8, caballero))
+    caballero.slotArma = Some(new Espada("Filo", 25, 8, caballero))
     assert(turnos.maxbarraDe(caballero) == 74.0)
 
   test("unidad agregada empieza barra en 0"):

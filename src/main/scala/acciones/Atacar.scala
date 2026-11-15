@@ -3,8 +3,8 @@ import unidades.{Enemigos, Personajes}
 
 class Atacar(override val nombre:String) extends AbstractAccion(nombre):
   override def ejecutadaPorPersonaje(fuente: Personajes, objetivo: Target): Boolean =
-    if fuente.SlotArma.isDefined then objetivo.recibirAtaque(fuente.SlotArma.get.AttackPoints)
+    if fuente.slotArma.isDefined then objetivo.recibirAtaque(fuente.slotArma.get.attackPoints)
     else false
 
   override def ejecutadaPorEnemigo(fuente: Enemigos, objetivo: Target): Boolean =
-    objetivo.recibirAtaque(fuente.AttackPoints)
+    objetivo.recibirAtaque(fuente.attackPoints)

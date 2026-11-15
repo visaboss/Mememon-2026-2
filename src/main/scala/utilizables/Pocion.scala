@@ -1,6 +1,6 @@
 package utilizables
 
-trait Pocion extends utilizable
+trait Pocion extends Utilizable
 
 
 

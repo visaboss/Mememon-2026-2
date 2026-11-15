@@ -8,12 +8,12 @@ class CaballeroTest extends munit.FunSuite:
 
   test("Un Caballero se crea con los valores correctos"):
     assert(caballero.nombre == "Arthur")
-    assert(caballero.HpPoints == 100)
-    assert(caballero.DefensePoints == 15)
+    assert(caballero.hpPoints == 100)
+    assert(caballero.defensePoints == 15)
     assert(caballero.weight == 70.0)
 
   test("Un Caballero nuevo no tiene arma equipada"):
-    assert(caballero.SlotArma == None)
+    assert(caballero.slotArma == None)
 
   test("Un Caballero nuevo tiene el inventario vacío"):
     assert(caballero.inventarioUtilizables.isEmpty)
@@ -42,5 +42,5 @@ class CaballeroTest extends munit.FunSuite:
     assertNotEquals(b, a)
   test("caballero dañado no igual a sano"):
     val herido = new Caballero("Arthur", 100, 15, 70)
-    herido.HpPoints = 10
+    herido.hpPoints = 10
     assertNotEquals(herido, new Caballero("Arthur", 100, 15, 70))

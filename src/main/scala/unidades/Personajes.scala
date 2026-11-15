@@ -1,43 +1,43 @@
 package unidades
 import scala.collection.mutable
 import utilizables.Arma
-import acciones.{accion, Atacar, ConsumirPocion, EquiparArma, Moverse, Target}
-import utilizables.utilizable
+import acciones.{Accion, Atacar, ConsumirPocion, EquiparArma, Moverse, Target}
+import utilizables.Utilizable
 
-import utilizables.{Arma, utilizable}
+import utilizables.{Arma, Utilizable}
 //esto seria una clase abstracta,
 
 abstract class Personajes(nombre: String,hp:Int,defensa: Int,peso: Double) extends AbstractUnidad(nombre, hp, defensa, peso):
 
-  var SlotArma: Option[Arma] = None
-  private val inventario: mutable.ListBuffer[utilizable] = mutable.ListBuffer()
+  var slotArma: Option[Arma] = None
+  private val inventario: mutable.ListBuffer[Utilizable] = mutable.ListBuffer()
 
   override def equals(obj: Any): Boolean =
     if getClass == obj.getClass then
       val other = obj.asInstanceOf[Personajes]
       nombre == other.nombre &&
-        HpPoints == other.HpPoints &&
-        DefensePoints == other.DefensePoints &&
+        hpPoints == other.hpPoints &&
+        defensePoints == other.defensePoints &&
         weight == other.weight
     else false
   // aqui deber ir slot de arma, unica supongo, e inventario(lista de cosas supongo, de utilizables)
 
 
   override def BarraAccion: Double =
-    if SlotArma.isDefined then
-      weight + 0.5 * SlotArma.get.weight
+    if slotArma.isDefined then
+      weight + 0.5 * slotArma.get.weight
     else
       weight
 
-  def inventarioUtilizables: List[utilizable] = inventario.toList
+  def inventarioUtilizables: List[Utilizable] = inventario.toList
 
-  def agregarUtilizable(objeto: utilizable): Unit =
+  def agregarUtilizable(objeto: Utilizable): Unit =
     inventario += objeto
 
-  def quitarUtilizable(objeto: utilizable): Unit =
+  def quitarUtilizable(objeto: Utilizable): Unit =
     inventario -= objeto
 
-  override def acciones: List[accion] =
+  override def acciones: List[Accion] =
     List(
       new Atacar("Atacar"),
       new Moverse("Moverse"),
@@ -45,14 +45,14 @@ abstract class Personajes(nombre: String,hp:Int,defensa: Int,peso: Double) exten
       new ConsumirPocion("Consumir pocion", inventarioUtilizables)
     )
 
-  override def doAction(accion: accion, objetivo: Target): Boolean =
+  override def doAction(accion: Accion, objetivo: Target): Boolean =
     accion.ejecutadaPorPersonaje(this, objetivo)
 
 
   def puedeEquipar(arma: Arma): Boolean
 
   def aumentarDefensa(cantidad: Int): Unit =
-    DefensePoints = DefensePoints + cantidad
+    defensePoints = defensePoints + cantidad
 
 
   def recibirPocionMana(): Boolean = false

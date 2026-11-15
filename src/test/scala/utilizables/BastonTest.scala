@@ -14,10 +14,10 @@ class BastonTest extends munit.FunSuite:
 
   test("Un Bastón se crea con los valores correctos"):
     assert(baston.nombre == "Trueno")
-    assert(baston.AttackPoints == 15)
+    assert(baston.attackPoints == 15)
     assert(baston.weight == 4.0)
     assert(baston.owner == arthur)
-    assert(baston.AttackPointsM == 45)
+    assert(baston.attackPointsM == 45)
 
   test("Dos Bastones con los mismos parámetros son iguales"):
     val otro = new Baston("Trueno", 15, 4, arthur, 45)

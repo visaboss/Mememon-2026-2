@@ -3,7 +3,7 @@ import acciones.AbstractTarget
 import unidades.Personajes
 
 
-abstract class Arma(override val nombre: String,val AttackPoints: Int, val weight: Double,prop: Personajes) extends AbstractTarget,utilizable:
+abstract class Arma(override val nombre: String, val attackPoints: Int, val weight: Double, prop: Personajes) extends AbstractTarget,Utilizable:
   private var _owner: Personajes = prop
   def owner:Personajes= _owner
 
@@ -11,7 +11,7 @@ abstract class Arma(override val nombre: String,val AttackPoints: Int, val weigh
     if getClass == obj.getClass then
       val other = obj.asInstanceOf[Arma]
       nombre == other.nombre &&
-        AttackPoints == other.AttackPoints &&
+        attackPoints == other.attackPoints &&
         weight == other.weight &&
         owner == other.owner
     else false
@@ -36,7 +36,7 @@ abstract class Arma(override val nombre: String,val AttackPoints: Int, val weigh
  
   override def equiparseEn(personaje: Personajes): Boolean =
     if personaje.puedeEquipar(this) then
-      personaje.SlotArma = Some(this)
+      personaje.slotArma = Some(this)
       _owner = personaje
       true
     else false

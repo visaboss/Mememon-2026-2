@@ -1,9 +1,9 @@
 package acciones
 
 import unidades.{Enemigos, MagoBlanco, MagoNegro, Personajes, PersonajesMagico}
-import utilizables.utilizable
+import utilizables.Utilizable
 
-trait accion:
+trait Accion:
   val nombre: String
 
   def ejecutadaPorPersonaje(fuente: Personajes, objetivo: Target): Boolean
@@ -15,10 +15,10 @@ trait accion:
   def ejecutadaPorEnemigo(fuente: Enemigos, objetivo: Target): Boolean
 
 
-abstract class Hechizo(override val nombre: String, var ManaPoints: Int)  extends AbstractAccion(nombre):
+abstract class Hechizo(override val nombre: String, var costoMana: Int)  extends AbstractAccion(nombre):
   protected def lanzar(mago: PersonajesMagico, objetivo: Target): Boolean =
-    if mago.ManaPoints >= ManaPoints && aplicarEfecto(mago.danioMagico, objetivo) then
-      mago.pagarHechizo(ManaPoints)
+    if mago.manaPoints >= costoMana && aplicarEfecto(mago.danioMagico, objetivo) then
+      mago.pagarHechizo(costoMana)
       true
     else false
 
@@ -33,7 +33,7 @@ abstract class MagiaDeLuz(nombre:String, ManaPoints:Int) extends Hechizo(nombre,
     lanzar(fuente, objetivo)
 
 
-abstract class AccionConUtilizables(override val nombre: String,val PosibleObjects : List[utilizable]) extends AbstractAccion(nombre)
+abstract class AccionConUtilizables(override val nombre: String,val posibleObjects : List[Utilizable]) extends AbstractAccion(nombre)
 
 
 

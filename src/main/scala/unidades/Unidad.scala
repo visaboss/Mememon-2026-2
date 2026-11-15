@@ -15,8 +15,8 @@ import mapajuego.Panel
 //notar que unidad igual a nombre de file, pero esto es solo convencion
 trait Unidad extends Source, Target:
   val nombre:String
-  var HpPoints: Int
-  var DefensePoints: Int
+  var hpPoints: Int
+  var defensePoints: Int
   var weight:Double
   var panelActual: Option[Panel]
   def BarraAccion : Double

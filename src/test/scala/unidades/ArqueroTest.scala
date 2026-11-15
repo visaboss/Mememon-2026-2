@@ -8,12 +8,12 @@ class ArqueroTest extends munit.FunSuite:
 
   test("Un Arquero se crea con los valores correctos"):
     assert(arquero.nombre == "Legolas")
-    assert(arquero.HpPoints == 80)
-    assert(arquero.DefensePoints == 8)
+    assert(arquero.hpPoints == 80)
+    assert(arquero.defensePoints == 8)
     assert(arquero.weight == 60.0)
 
   test("Un Arquero nuevo no tiene arma equipada"):
-    assert(arquero.SlotArma == None)
+    assert(arquero.slotArma == None)
 
   test("Un Arquero nuevo tiene el inventario vacío"):
     assert(arquero.inventarioUtilizables.isEmpty)

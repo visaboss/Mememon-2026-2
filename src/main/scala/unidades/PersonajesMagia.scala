@@ -1,26 +1,26 @@
 package unidades
 
-abstract class PersonajesMagico(nombre: String,HpPoints: Int,DefensePoints: Int,weight: Double,var ManaPoints: Double) extends  Personajes(nombre, HpPoints, DefensePoints, weight):
-  val maxManaPoints: Double = ManaPoints
+abstract class PersonajesMagico(nombre: String,HpPoints: Int,DefensePoints: Int,weight: Double,var manaPoints: Double) extends  Personajes(nombre, HpPoints, DefensePoints, weight):
+  val maxManaPoints: Double = manaPoints
   private var fuerzaMagicaActiva: Boolean = false
 
   override def equals(obj: Any): Boolean =
     super.equals(obj) &&
-      ManaPoints == obj.asInstanceOf[PersonajesMagico].ManaPoints
+      manaPoints == obj.asInstanceOf[PersonajesMagico].manaPoints
 
   def tieneFuerzaMagica: Boolean = fuerzaMagicaActiva
 
   def danioMagico: Int =
-    val base = if SlotArma.isDefined then SlotArma.get.ataqueMagico else 0
+    val base = if slotArma.isDefined then slotArma.get.ataqueMagico else 0
     if fuerzaMagicaActiva then base * 3 / 2 else base
 
   def pagarHechizo(costo: Int): Unit =
-    ManaPoints = ManaPoints - costo
+    manaPoints = manaPoints - costo
     fuerzaMagicaActiva = false
 
   override def recibirPocionMana(): Boolean =
-    ManaPoints = ManaPoints + maxManaPoints * 0.3
-    if ManaPoints > maxManaPoints then ManaPoints = maxManaPoints
+    manaPoints = manaPoints + maxManaPoints * 0.3
+    if manaPoints > maxManaPoints then manaPoints = maxManaPoints
     true
 
   override def recibirFuerzaMagica(): Boolean =

@@ -10,4 +10,4 @@ class EquiparArmaTest extends munit.FunSuite:
     val dagger = new Daga("B", 15,1,owner)
     val accion = new EquiparArma("C", List(sword, dagger))
     assertEquals(accion.nombre, "C")
-    assertEquals(accion.PosibleObjects, List(sword, dagger))
+    assertEquals(accion.posibleObjects, List(sword, dagger))

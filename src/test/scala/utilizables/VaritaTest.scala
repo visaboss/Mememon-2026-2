@@ -14,10 +14,10 @@ class VaritaTest extends munit.FunSuite:
 
   test("Una Varita se crea con los valores correctos"):
     assert(varita.nombre == "Rayo")
-    assert(varita.AttackPoints == 10)
+    assert(varita.attackPoints == 10)
     assert(varita.weight == 1.0)
     assert(varita.owner == arthur)
-    assert(varita.AttackPointsM == 30)
+    assert(varita.attackPointsM == 30)
 
   test("Dos Varitas con los mismos parámetros son iguales"):
     val otra = new Varita("Rayo", 10, 1, arthur, 30)

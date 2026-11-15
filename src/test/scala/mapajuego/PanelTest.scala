@@ -11,17 +11,17 @@ class PanelTest extends munit.FunSuite:
     assert(panel.x==2)
     assert(panel.y==3)
   test("new panel, doesnt have units"):
-    assert(panel.UnitsInPanel.isEmpty)
+    assert(panel.unitsInPanel.isEmpty)
 
   test("Un Panel puede contener unidades"): 
     val caballero = new Caballero("A", 100, 15, 70)
     panel.addUnit(caballero)
-    assert(panel.UnitsInPanel.head == caballero)
+    assert(panel.unitsInPanel.head == caballero)
 
   test("Un Panel nuevo no tiene paneles aledaños"):
-    assert(panel.NeighboringPanel.isEmpty)
+    assert(panel.neighboringPanel.isEmpty)
 
   test("Un Panel reconoce como aledaño a un panel agregado"):
     val vecino = new Panel(2, 4)
-    panel.AddNeighbor(vecino)
-    assert(panel.NeighboringPanel.contains(vecino))
+    panel.addNeighbor(vecino)
+    assert(panel.neighboringPanel.contains(vecino))

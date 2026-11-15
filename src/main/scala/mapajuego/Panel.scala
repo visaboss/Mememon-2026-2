@@ -12,8 +12,8 @@ class Panel(var x: Int, var y: Int) extends  AbstractTarget:
   private val unidades: mutable.ListBuffer[Unidad] = mutable.ListBuffer()
   private val vecinos: mutable.ListBuffer[Panel] = mutable.ListBuffer()
 
-  def UnitsInPanel: List[Unidad] = unidades.toList
-  def NeighboringPanel: List[Panel] = vecinos.toList
+  def unitsInPanel: List[Unidad] = unidades.toList
+  def neighboringPanel: List[Panel] = vecinos.toList
 
   def esAdyacente(otro: Panel): Boolean =
     math.abs(x - otro.x) + math.abs(y - otro.y) == 1
@@ -22,10 +22,10 @@ class Panel(var x: Int, var y: Int) extends  AbstractTarget:
     //se me ocurre, algun tipo algoritmo, que escanee en un delta de x e y, alrededor, y evaluea, si celdas
     //dentro de (dx, dy) contienen, a otro panel, si es asi, colocarlo en una lista, y delvolver esa lista
     //si al final, la lista esta vacia, entonces, devolver la lista vacia, y
-  def AddNeighbor(panel:Panel):Unit =
+  def addNeighbor(panel:Panel):Unit =
     if esAdyacente(panel) && !vecinos.contains(panel) then
       vecinos += panel
-      panel.AddNeighbor(this)
+      panel.addNeighbor(this)
 
   def addUnit(unidad:Unidad): Unit =
     if !unidades.contains(unidad) then unidades += unidad

@@ -8,7 +8,7 @@ import unidades.Unidad
 
 
 
-class Panel(var x: Int, var y: Int) extends  AbstractTarget:
+class Panel(val x: Int, val y: Int) extends  AbstractTarget:
   private val unidades: mutable.ListBuffer[Unidad] = mutable.ListBuffer()
   private val vecinos: mutable.ListBuffer[Panel] = mutable.ListBuffer()
 
@@ -28,11 +28,15 @@ class Panel(var x: Int, var y: Int) extends  AbstractTarget:
       panel.addNeighbor(this)
 
   def addUnit(unidad:Unidad): Unit =
+    if unidad.panelActual.isDefined && unidad.panelActual.get != this then
+      unidad.panelActual.get.quitarUnidad(unidad)
     if !unidades.contains(unidad) then unidades += unidad
     unidad.panelActual = Some(this)
 
-  def quitarUnidad(unidad: Unidad): Unit =
+  def quitarUnidad(unidad: Unidad): Unit = {
     unidades -= unidad
+    if unidad.panelActual == Some(this) then unidad.panelActual = None
+  }
 
   override def recibirMovimiento(unidad: Unidad): Boolean =
     if unidad.panelActual.isDefined && vecinos.contains(unidad.panelActual.get) then

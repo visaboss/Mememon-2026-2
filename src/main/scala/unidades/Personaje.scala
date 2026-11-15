@@ -28,7 +28,7 @@ abstract class Personaje(nombre: String, hp:Int, defensa: Int, peso: Double) ext
     if slotArma.isDefined then
       weight + 0.5 * slotArma.get.weight
     else
-      weight
+      weight  
 
   def inventarioUtilizables: List[Utilizable] = inventario.toList
 

@@ -33,10 +33,10 @@ class Turnos:
     for unidad <- unidades do
       barras(unidad) = barras(unidad) + cantidad
 
-  def completoBarra(unidad: Unidad): Boolean =
+  private def completoBarra(unidad: Unidad): Boolean =
     barras(unidad) >= unidad.BarraAccion
 
-  def unidadesConTurno: List[Unidad] =
+  private def unidadesConTurno: List[Unidad] =
     val completadas: mutable.ListBuffer[Unidad] = mutable.ListBuffer()
 
     for unidad <- unidades do

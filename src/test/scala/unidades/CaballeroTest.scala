@@ -40,3 +40,7 @@ class CaballeroTest extends munit.FunSuite:
     val b: Personajes = new Arquero("Arthur", 100, 15, 70)
     assertNotEquals(a, b)
     assertNotEquals(b, a)
+  test("caballero dañado no igual a sano"):
+    val herido = new Caballero("Arthur", 100, 15, 70)
+    herido.HpPoints = 10
+    assertNotEquals(herido, new Caballero("Arthur", 100, 15, 70))

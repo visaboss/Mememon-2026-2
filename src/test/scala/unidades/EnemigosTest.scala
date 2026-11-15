@@ -32,3 +32,8 @@ class EnemigosTest extends munit.FunSuite:
 
   test("Dos Enemigos con distinto ataque no son iguales"):
     assertNotEquals(enemigo, new Enemigos("Goblin", 50, 12, 30, 6))
+
+  test("enemigo dañado no igual a sano"):
+    val herido = new Enemigos("Goblin", 50, 12, 30, 5)
+    herido.HpPoints = 10
+    assertNotEquals(herido, new Enemigos("Goblin", 50, 12, 30, 5))

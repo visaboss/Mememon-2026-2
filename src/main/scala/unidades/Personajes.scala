@@ -7,10 +7,10 @@ import utilizables.utilizable
 import utilizables.{Arma, utilizable}
 //esto seria una clase abstracta,
 
-abstract class Personajes(override val nombre: String,HpPoints:Int,DefensePoints: Int,weight: Double) extends AbstractUnidad(nombre, HpPoints, DefensePoints, weight):
+abstract class Personajes(nombre: String,hp:Int,defensa: Int,peso: Double) extends AbstractUnidad(nombre, hp, defensa, peso):
 
   var SlotArma: Option[Arma] = None
-  var inventario: mutable.ListBuffer[utilizable] = mutable.ListBuffer()
+  private val inventario: mutable.ListBuffer[utilizable] = mutable.ListBuffer()
 
   override def equals(obj: Any): Boolean =
     if getClass == obj.getClass then

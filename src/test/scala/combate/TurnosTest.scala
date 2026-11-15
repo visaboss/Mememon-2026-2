@@ -1,18 +1,18 @@
 package combate
 
-import unidades.{Caballero, Enemigos}
+import unidades.{Caballero, Enemigo}
 import utilizables.Espada
 
 class TurnosTest extends munit.FunSuite:
   var turnos: Turnos = null
-  var liviano: Enemigos = null
-  var pesado: Enemigos = null
+  var liviano: Enemigo = null
+  var pesado: Enemigo = null
   var caballero: Caballero = null
 
   override def beforeEach(context: BeforeEach): Unit =
     turnos = new Turnos()
-    liviano = new Enemigos("A", 20, 2, 10, 5)     // barra máxima 10
-    pesado = new Enemigos("B", 80, 10, 40, 25)    // barra máxima 40
+    liviano = new Enemigo("A", 20, 2, 10, 5)     // barra máxima 10
+    pesado = new Enemigo("B", 80, 10, 40, 25)    // barra máxima 40
     caballero = new Caballero("C", 100, 15, 70)   // barra máxima 70 sin arma
 
   test("programadornuevo no unidades"):
@@ -121,7 +121,7 @@ class TurnosTest extends munit.FunSuite:
     assert(turnos.unidadConTurno == Some(caballero))
 
   test("en empate, turno,es de unidad agregada primero"):
-    val otro = new Enemigos("D", 30, 1, 10, 3)   // misma barra máxima que liviano
+    val otro = new Enemigo("D", 30, 1, 10, 3)   // misma barra máxima que liviano
     turnos.agregarUnidad(liviano)
     turnos.agregarUnidad(otro)
     turnos.aumentarBarras(15)

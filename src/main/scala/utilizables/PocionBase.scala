@@ -1,7 +1,7 @@
 package utilizables
 
 import acciones.AbstractTarget
-import unidades.Personajes
+import unidades.Personaje
 
 abstract class PocionBase(override val nombre: String) extends AbstractTarget, Pocion:
 
@@ -11,11 +11,11 @@ abstract class PocionBase(override val nombre: String) extends AbstractTarget, P
       nombre == other.nombre
     else false
   
-  override def consumirsePor(personaje: Personajes): Boolean =
+  override def consumirsePor(personaje: Personaje): Boolean =
     if aplicarA(personaje) then
       personaje.quitarUtilizable(this)
       true
     else false
 
   
-  protected def aplicarA(personaje: Personajes): Boolean
+  protected def aplicarA(personaje: Personaje): Boolean

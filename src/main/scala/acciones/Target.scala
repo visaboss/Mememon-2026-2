@@ -1,6 +1,6 @@
 package acciones
 
-import unidades.{Personajes, Unidad}
+import unidades.{Personaje, Unidad}
 
 
 trait Target:
@@ -11,10 +11,10 @@ trait Target:
   def recibirMovimiento(unidad: Unidad): Boolean
 
 
-  def equiparseEn(personaje: Personajes): Boolean
+  def equiparseEn(personaje: Personaje): Boolean
 
 
-  def consumirsePor(personaje: Personajes): Boolean
+  def consumirsePor(personaje: Personaje): Boolean
 
 
   def recibirTrueno(danioMagico: Int): Boolean

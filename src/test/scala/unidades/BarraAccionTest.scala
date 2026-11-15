@@ -1,15 +1,15 @@
 package unidades
 
 import utilizables.Espada
-import unidades.Enemigos
+import unidades.Enemigo
 
 class BarraAccionTest extends munit.FunSuite:
   var caballero: Caballero = null
-  var enemigo :Enemigos = null
+  var enemigo :Enemigo = null
   
   override def beforeEach(context: BeforeEach): Unit =
     caballero = new Caballero("A", 100, 15, 70)
-    enemigo = new Enemigos("B", 40, 10, 30, 20)
+    enemigo = new Enemigo("B", 40, 10, 30, 20)
     
   test("personaje sin arma tiene barraccion igual a su peso"):
     assertEquals(caballero.BarraAccion, 70.0)

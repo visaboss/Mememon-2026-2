@@ -1,10 +1,10 @@
 package utilizables
 
-import unidades.{Caballero, Personajes}
+import unidades.{Caballero, Personaje}
 
 class DagaTest extends munit.FunSuite:
-  var arthur: Personajes = null
-  var lancelot: Personajes = null
+  var arthur: Personaje = null
+  var lancelot: Personaje = null
   var daga: Daga = null
 
   override def beforeEach(context: BeforeEach): Unit =

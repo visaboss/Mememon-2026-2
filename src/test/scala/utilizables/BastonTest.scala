@@ -1,10 +1,10 @@
 package utilizables
 
-import unidades.{Caballero, Personajes}
+import unidades.{Caballero, Personaje}
 
 class BastonTest extends munit.FunSuite:
-  var arthur: Personajes = null
-  var artur2: Personajes = null
+  var arthur: Personaje = null
+  var artur2: Personaje = null
   var baston: Baston = null
 
   override def beforeEach(context: BeforeEach): Unit =

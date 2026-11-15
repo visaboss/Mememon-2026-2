@@ -1,10 +1,10 @@
 package jugadores
-import unidades.{Personajes, PersonajesMagico, Unidad}
+import unidades.{Personaje, PersonajeMagico, Unidad}
 import scala.collection.mutable
 
 
 
-class Jugadores() extends Player:
+class Jugador() extends Player:
   private val unidades: mutable.ListBuffer[Unidad] = mutable.ListBuffer()
 
   override def listaUnidades: List[Unidad] = unidades.toList

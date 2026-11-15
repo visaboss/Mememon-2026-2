@@ -3,7 +3,7 @@ package unidades
 import acciones.{Accion, Meteorito, Target, Trueno}
 import utilizables.Arma
 
-class MagoNegro(nombre: String,HpPoints: Int,DefensePoints:Int,weight: Int,ManaPoints: Int) extends PersonajesMagico(nombre, HpPoints, DefensePoints, weight, ManaPoints):
+class MagoNegro(nombre: String,HpPoints: Int,DefensePoints:Int,weight: Int,ManaPoints: Int) extends PersonajeMagico(nombre, HpPoints, DefensePoints, weight, ManaPoints):
   override def acciones: List[Accion] =
     super.acciones ++ List(new Trueno("Trueno"), new Meteorito("Meteorito"))
 

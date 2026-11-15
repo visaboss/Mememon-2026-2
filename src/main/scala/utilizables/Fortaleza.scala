@@ -1,6 +1,6 @@
 package utilizables
-import unidades.Personajes
+import unidades.Personaje
 class Fortaleza(nombre:String) extends PocionComun(nombre):
-  override protected def aplicarA(personaje: Personajes): Boolean =
+  override protected def aplicarA(personaje: Personaje): Boolean =
     personaje.aumentarDefensa(personaje.defensePoints * 15 / 100)
     true

@@ -1,8 +1,8 @@
 package utilizables
 
-import unidades.Personajes
+import unidades.Personaje
 
-class Varita(nombre: String,AttackPoints: Int,weight: Double,owner: Personajes,AttackPointsM: Int) extends ArmaMagic(nombre, AttackPoints, weight, owner, AttackPointsM):
+class Varita(nombre: String, AttackPoints: Int, weight: Double, owner: Personaje, AttackPointsM: Int) extends ArmaMagic(nombre, AttackPoints, weight, owner, AttackPointsM):
   override def equipablePorArquero: Boolean = true
   override def equipablePorMagoNegro: Boolean = true
   override def equipablePorMagoBlanco: Boolean = true

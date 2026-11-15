@@ -1,19 +1,19 @@
 package acciones
 
 import mapajuego.Panel
-import unidades.{Caballero, Enemigos, MagoBlanco, MagoNegro}
+import unidades.{Caballero, Enemigo, MagoBlanco, MagoNegro}
 import utilizables.{Daga, Varita}
 
 class TruenoTest extends munit.FunSuite:
   var trueno: Trueno = null
   var negro: MagoNegro = null
-  var enemigo: Enemigos = null
+  var enemigo: Enemigo = null
 
   override def beforeEach(context: BeforeEach): Unit =
     trueno = new Trueno("Trueno")
     negro = new MagoNegro("Vivi", 60, 4, 40, 50)
     negro.slotArma = Some(new Varita("Rayo", 10, 1, negro, 30))
-    enemigo = new Enemigos("Goblin", 100, 10, 30, 20)
+    enemigo = new Enemigo("Goblin", 100, 10, 30, 20)
 
   test("Trueno built with default cost"):
     val accion = new Trueno("A")

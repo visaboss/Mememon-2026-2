@@ -1,6 +1,6 @@
 package utilizables
 import acciones.Target
-import unidades.Personajes
+import unidades.Personaje
 
 trait Utilizable extends Target:
   val nombre: String

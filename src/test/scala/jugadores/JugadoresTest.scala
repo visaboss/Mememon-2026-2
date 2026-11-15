@@ -1,16 +1,16 @@
 package jugadores
 
-import unidades.{Caballero, Enemigos}
+import unidades.{Caballero, Enemigo}
 
 class JugadoresTest extends munit.FunSuite:
-  var jugador: Jugadores = null
+  var jugador: Jugador = null
   var caballero: Caballero = null
-  var goblin: Enemigos = null
+  var goblin: Enemigo = null
 
   override def beforeEach(context: BeforeEach): Unit =
-    jugador = new Jugadores()
+    jugador = new Jugador()
     caballero = new Caballero("artur", 100, 15, 70)
-    goblin = new Enemigos("goblin", 50, 12, 30, 5)
+    goblin = new Enemigo("goblin", 50, 12, 30, 5)
 
   test("jugador nuevo tiene lista de unidades vacía"):
     assert(jugador.listaUnidades.isEmpty)

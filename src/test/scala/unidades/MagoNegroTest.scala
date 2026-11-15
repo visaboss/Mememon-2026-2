@@ -40,7 +40,7 @@ class MagoNegroTest extends munit.FunSuite:
     assertNotEquals(mago, new MagoNegro("Vivi", 55, 3, 40, 99))
 
   test("Un Mago Negro y un Mago Blanco con los mismos parámetros no son iguales"):
-    val a: Personajes = mago
-    val b: Personajes = new MagoBlanco("Vivi", 55, 3, 40, 60)
+    val a: Personaje = mago
+    val b: Personaje = new MagoBlanco("Vivi", 55, 3, 40, 60)
     assertNotEquals(a, b)
     assertNotEquals(b, a)

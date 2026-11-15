@@ -1,11 +1,11 @@
 package utilizables
 import acciones.AbstractTarget
-import unidades.Personajes
+import unidades.Personaje
 
 
-abstract class Arma(override val nombre: String, val attackPoints: Int, val weight: Double, prop: Personajes) extends AbstractTarget,Utilizable:
-  private var _owner: Personajes = prop
-  def owner:Personajes= _owner
+abstract class Arma(override val nombre: String, val attackPoints: Int, val weight: Double, prop: Personaje) extends AbstractTarget,Utilizable:
+  private var _owner: Personaje = prop
+  def owner:Personaje= _owner
 
   override def equals(obj: Any): Boolean =
     if getClass == obj.getClass then
@@ -34,7 +34,7 @@ abstract class Arma(override val nombre: String, val attackPoints: Int, val weig
   def equipablePorMagoBlanco: Boolean = false
 
  
-  override def equiparseEn(personaje: Personajes): Boolean =
+  override def equiparseEn(personaje: Personaje): Boolean =
     if personaje.puedeEquipar(this) then
       personaje.slotArma = Some(this)
       _owner = personaje

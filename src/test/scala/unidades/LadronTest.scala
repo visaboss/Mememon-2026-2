@@ -36,7 +36,7 @@ class LadronTest extends munit.FunSuite:
     assertNotEquals(ladron, new Ladron("Zidane", 70, 6, 56))
 
   test("Un Ladrón y un Caballero con los mismos parámetros no son iguales"):
-    val a: Personajes = ladron
-    val b: Personajes = new Caballero("Zidane", 70, 6, 55)
+    val a: Personaje = ladron
+    val b: Personaje = new Caballero("Zidane", 70, 6, 55)
     assertNotEquals(a, b)
     assertNotEquals(b, a)

@@ -1,12 +1,12 @@
 package unidades
 
-abstract class PersonajesMagico(nombre: String,HpPoints: Int,DefensePoints: Int,weight: Double,var manaPoints: Double) extends  Personajes(nombre, HpPoints, DefensePoints, weight):
+abstract class PersonajeMagico(nombre: String, HpPoints: Int, DefensePoints: Int, weight: Double, var manaPoints: Double) extends  Personaje(nombre, HpPoints, DefensePoints, weight):
   val maxManaPoints: Double = manaPoints
   private var fuerzaMagicaActiva: Boolean = false
 
   override def equals(obj: Any): Boolean =
     super.equals(obj) &&
-      manaPoints == obj.asInstanceOf[PersonajesMagico].manaPoints
+      manaPoints == obj.asInstanceOf[PersonajeMagico].manaPoints
 
   def tieneFuerzaMagica: Boolean = fuerzaMagicaActiva
 

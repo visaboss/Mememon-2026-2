@@ -4,13 +4,13 @@ class FuentesTest extends munit.FunSuite:
   var caballero: Caballero = null
   var negro: MagoNegro = null
   var blanco: MagoBlanco = null
-  var enemigo: Enemigos = null
+  var enemigo: Enemigo = null
 
   override def beforeEach(context: BeforeEach): Unit =
     caballero = new Caballero("Arthur", 100, 15, 70)
     negro = new MagoNegro("Vivi", 60, 4, 40, 50)
     blanco = new MagoBlanco("Rosa", 60, 4, 45, 50)
-    enemigo = new Enemigos("Goblin", 100, 10, 30, 20)
+    enemigo = new Enemigo("Goblin", 100, 10, 30, 20)
 
   test("capaz de hacer acciones"):
     assert(caballero.acciones.length == 4)

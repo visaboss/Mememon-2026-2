@@ -3,6 +3,7 @@ package acciones
 import utilizables.{Fortaleza, Curacion as PocionCuracion, Espada, FuerzaMagica, Mana}
 
 import unidades.{Caballero, MagoNegro, Enemigo}
+import excepciones.{InvalidMovementException, InvalidActionException, InvalidTargetException}
 
 class ConsumirPocionTest extends munit.FunSuite:
   var knight: Caballero = null
@@ -62,10 +63,12 @@ class ConsumirPocionTest extends munit.FunSuite:
   test("personaje comun no puede consumir mana y pocion sigue en inventario"):
     val pocion = new Mana("A")
     knight.agregarUtilizable(pocion)
-    assert(!knight.doAction(knight.buscarAccion("Consumir pocion").get, pocion))
+    intercept[InvalidTargetException]{
+      knight.doAction(knight.buscarAccion("Consumir pocion").get, pocion)
+    }
     assert(knight.inventarioUtilizables.contains(pocion))
 
-  test("fuerza mágica activa bonus de daño en mago"):
+  test("fuerza magica activa bonus de daño en mago"):
     val pocion = new FuerzaMagica("A")
     mage.agregarUtilizable(pocion)
     assert(mage.doAction(mage.buscarAccion("Consumir pocion").get, pocion))
@@ -74,20 +77,24 @@ class ConsumirPocionTest extends munit.FunSuite:
   test("personaje comun no puede consumir fuerza magica"):
     val pocion = new FuerzaMagica("A")
     knight.agregarUtilizable(pocion)
-    assert(!knight.doAction(knight.buscarAccion("Consumir pocion").get, pocion))
+    intercept[InvalidTargetException]{
+      knight.doAction(knight.buscarAccion("Consumir pocion").get, pocion)
+    }
 
-  test("no puede consumir pocion que no está en posibles objetos"):
+  test("no puede consumir pocion que no esta en posibles objetos"):
     val pocion = new PocionCuracion("A")
     knight.hpPoints = 50
-    assert(!knight.doAction(new ConsumirPocion("Consumir pocion", List()), pocion))
+    intercept[InvalidActionException]{
+      knight.doAction(new ConsumirPocion("Consumir pocion", List()), pocion)
+    }
     assert(knight.hpPoints == 50)
 
   test("no puede consumir arma"):
     val espada = new Espada("A", 50, 5, knight)
     knight.agregarUtilizable(espada)
-    assert(!knight.doAction(knight.buscarAccion("Consumir pocion").get, espada))
+    intercept[InvalidTargetException]{knight.doAction(knight.buscarAccion("Consumir pocion").get, espada)}
 
   test("enemigo no puede consumir pociones"):
     val enemigo = new Enemigo("A", 100, 10, 30, 20)
     val pocion = new PocionCuracion("B")
-    assert(!enemigo.doAction(new ConsumirPocion("Consumir pocion", List(pocion)), pocion))
+    intercept[InvalidActionException]{enemigo.doAction(new ConsumirPocion("Consumir pocion", List(pocion)), pocion)}

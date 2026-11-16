@@ -11,9 +11,9 @@ class TurnosTest extends munit.FunSuite:
 
   override def beforeEach(context: BeforeEach): Unit =
     turnos = new Turnos()
-    liviano = new Enemigo("A", 20, 2, 10, 5)     // barra máxima 10
-    pesado = new Enemigo("B", 80, 10, 40, 25)    // barra máxima 40
-    caballero = new Caballero("C", 100, 15, 70)   // barra máxima 70 sin arma
+    liviano = new Enemigo("A", 20, 2, 10, 5)     // barra maxima 10
+    pesado = new Enemigo("B", 80, 10, 40, 25)    // barra maxima 40
+    caballero = new Caballero("C", 100, 15, 70)   // barra maxima 70 sin arma
 
   test("programadornuevo no unidades"):
     assert(turnos.unidadesEnBatalla.isEmpty)
@@ -40,18 +40,18 @@ class TurnosTest extends munit.FunSuite:
     assert(!turnos.unidadesEnBatalla.contains(liviano))
     assert(turnos.unidadesEnBatalla.contains(pesado))
 
-  test("quitar unidad que no está no hace que cambie nada"):
+  test("quitar unidad que no esta no hace que cambie nada"):
     turnos.agregarUnidad(pesado)
     turnos.quitarUnidad(liviano)
     assert(turnos.unidadesEnBatalla == List(pesado))
 
-  test("barra máxima de enemigo es su peso"):
+  test("barra maxima de enemigo es su peso"):
     assert(turnos.maxBarraDe(pesado) == 40.0)
 
-  test("barra máxima de personaje sin arma espeso"):
+  test("barra maxima de personaje sin arma espeso"):
     assert(turnos.maxBarraDe(caballero) == 70.0)
 
-  test("barra máxima de  personaje con arma es la correcta"):
+  test("barra maxima de  personaje con arma es la correcta"):
     caballero.slotArma = Some(new Espada("Filo", 25, 8, caballero))
     assert(turnos.maxBarraDe(caballero) == 74.0)
 
@@ -121,7 +121,7 @@ class TurnosTest extends munit.FunSuite:
     assert(turnos.unidadConTurno == Some(caballero))
 
   test("en empate, turno,es de unidad agregada primero"):
-    val otro = new Enemigo("D", 30, 1, 10, 3)   // misma barra máxima que liviano
+    val otro = new Enemigo("D", 30, 1, 10, 3)   // misma barra maxima que liviano
     turnos.agregarUnidad(liviano)
     turnos.agregarUnidad(otro)
     turnos.aumentarBarras(15)

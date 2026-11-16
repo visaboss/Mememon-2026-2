@@ -19,7 +19,7 @@ class VaritaTest extends munit.FunSuite:
     assert(varita.owner == arthur)
     assert(varita.attackPointsM == 30)
 
-  test("Dos Varitas con los mismos parámetros son iguales"):
+  test("Dos Varitas con los mismos parametros son iguales"):
     val otra = new Varita("Rayo", 10, 1, arthur, 30)
     assertEquals(varita, otra)
     assertEquals(otra, varita)
@@ -36,11 +36,14 @@ class VaritaTest extends munit.FunSuite:
   test("Dos Varitas con distinto dueño no son iguales"):
     assertNotEquals(varita, new Varita("Rayo", 10, 1, artur2, 30))
 
-  test("Dos Varitas con distinto ataque mágico no son iguales"):
+  test("Dos Varitas con distinto ataque magico no son iguales"):
     assertNotEquals(varita, new Varita("Rayo", 10, 1, arthur, 31))
 
-  test("Una Varita y un Bastón con los mismos parámetros no son iguales"):
+  test("Una Varita y un Bastón con los mismos parametros no son iguales"):
     val a: Arma = varita
     val b: Arma = new Baston("Rayo", 10, 1, arthur, 30)
     assertNotEquals(a, b)
     assertNotEquals(b, a)
+
+  test("varita es arma magica"):
+    assert(varita.esMagica)

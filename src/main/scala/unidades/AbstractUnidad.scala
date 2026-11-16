@@ -1,17 +1,33 @@
 package cl.uchile.dcc
 package unidades
-import acciones.{AbstractTarget, Accion}
+import acciones.{AbstractTarget, Accion,Target}
 import mapajuego.Panel
+import excepciones.defeatedUnitException
+
 
 
 abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
                               var defensePoints: Int, var weight: Double)
   extends AbstractTarget, Unidad:
 
-  /** Puntos de vida máximos: la vida con la que se creó la unidad. */
+  /** Puntos de vida maximos: la vida con la que se creó la unidad. */
   val maxHpPoints: Int = hpPoints
 
   var panelActual: Option[Panel] = None
+
+  override def estaDerrotada: Boolean = hpPoints <=0
+
+  override def doAction(accion: Accion, objetivo: Target): Boolean =
+    if estaDerrotada then
+      throw new defeatedUnitException(s"$nombre no tiene puntos de vida")
+    ejecutar(accion, objetivo)
+
+  protected def ejecutar(accion: Accion, target: Target): Boolean
+
+  protected def verificarRecibe() : Unit =
+    if estaDerrotada then
+      throw new defeatedUnitException(s"$nombre derrotado, no recibir acciones")
+
 
   override def buscarAccion(nombreAccion: String): Option[Accion] =
     var encontrada: Option[Accion] = None
@@ -22,12 +38,16 @@ abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
 
 
   override def recibirAtaque(danio: Int): Boolean =
-    perderVida(danio - defensePoints)
+    verificarRecibe()
+    perderVida(danio- defensePoints)
     true
 
-  override def recibirTrueno(danioMagico: Int): Boolean =
+
+  override def recibirTrueno(danioMagico: Int): Boolean = {
+    verificarRecibe()
     recibirDanioMagico(danioMagico)
     true
+  }
 
   override def recibirDanioMagico(danio: Int): Unit =
     perderVida(danio)
@@ -41,3 +61,4 @@ abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
     if cantidad > 0 then
       hpPoints = hpPoints - cantidad
       if hpPoints < 0 then hpPoints = 0
+

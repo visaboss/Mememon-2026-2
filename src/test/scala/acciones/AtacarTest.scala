@@ -2,8 +2,10 @@ package cl.uchile.dcc
 package acciones
 
 import unidades.{Caballero, Enemigo, MagoNegro}
-import utilizables.{Espada, Daga}
+import utilizables.{Espada, Daga, Fortaleza}
 import mapajuego.Panel
+import excepciones.{InvalidActionException, missingWeaponException, InvalidTargetException}
+
 
 class AtacarTest extends munit.FunSuite:
   var attack: Atacar = null
@@ -26,7 +28,8 @@ class AtacarTest extends munit.FunSuite:
     assert(enemy.hpPoints == 60)
 
   test("personaje sin arma no puede atacar"):
-    assert(!knight.doAction(attack, enemy))
+    val error = intercept[missingWeaponException](knight.doAction(attack, enemy))
+    assert(error.getMessage == "artur necesita un arma para atacar")
     assert(enemy.hpPoints == 100)
 
   test("mago con arma puede atacar"):
@@ -51,4 +54,11 @@ class AtacarTest extends munit.FunSuite:
 
   test("no se puede atacar panel"):
     knight.slotArma = Some(new Espada("Excalibur", 50, 5, knight))
-    assert(!knight.doAction(attack, new Panel(1, 1)))
+    intercept[InvalidTargetException]{
+      knight.doAction(attack, new Panel(1, 1))
+    }
+
+  test("no se puede atacar una pocion"):
+    intercept[InvalidTargetException]{
+      enemy.doAction(attack, new Fortaleza("A"))
+    }

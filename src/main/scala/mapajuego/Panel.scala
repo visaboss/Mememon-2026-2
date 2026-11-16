@@ -3,7 +3,7 @@ package mapajuego
 import scala.collection.mutable
 import acciones.AbstractTarget
 import unidades.Unidad
-
+import excepciones.{InvalidMovementException}
 // var ListUnitsPanel: mutable.ListBuffer[Unidad] = mutable.ListBuffer[]()
 
 
@@ -39,13 +39,15 @@ class Panel(val x: Int, val y: Int) extends  AbstractTarget:
   }
 
   override def recibirMovimiento(unidad: Unidad): Boolean =
-    if unidad.panelActual.isDefined && vecinos.contains(unidad.panelActual.get) then
-      unidad.panelActual.get.quitarUnidad(unidad)
-      addUnit(unidad)
-      true
-    else false
+    if unidad.panelActual.isEmpty then
+      throw new InvalidMovementException(s"${unidad.nombre} no esta en ningún panel")
+    if !vecinos.contains(unidad.panelActual.get) then
+      throw new InvalidMovementException(s"${unidad.nombre} solo puede moverse a un panel aledaño")
+    unidad.panelActual.get.quitarUnidad(unidad)
+    addUnit(unidad)
+    true
 
   override def recibirMeteorito(danioMagico: Int): Boolean =
     for unidad <- unidades.toList do
-      unidad.recibirDanioMagico(danioMagico)
+      if !unidad.estaDerrotada then unidad.recibirDanioMagico(danioMagico)
     true

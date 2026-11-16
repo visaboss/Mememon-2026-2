@@ -13,7 +13,7 @@ class EnemigosTest extends munit.FunSuite:
     assert(enemigo.weight == 30.0)
     assert(enemigo.attackPoints == 5)
 
-  test("Dos Enemigos con los mismos parámetros son iguales"):
+  test("Dos Enemigos con los mismos parametros son iguales"):
     val otro = new Enemigo("Goblin", 50, 12, 30, 5)
     assertEquals(enemigo, otro)
     assertEquals(otro, enemigo)

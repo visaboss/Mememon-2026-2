@@ -7,7 +7,7 @@ class MagoBlanco(nombre: String,hp:Int,defensa: Int,peso:Int,mana:Int) extends P
   override def acciones: List[Accion] =
     super.acciones ++ List(new Curacion("Curacion"), new Purificacion("Purificacion"))
 
-  override def doAction(accion: Accion, objetivo: Target): Boolean =
+  override protected def ejecutar(accion: Accion, objetivo: Target): Boolean =
     accion.ejecutadaPorMagoBlanco(this, objetivo)
 
   override def puedeEquipar(arma: Arma): Boolean = arma.equipablePorMagoBlanco

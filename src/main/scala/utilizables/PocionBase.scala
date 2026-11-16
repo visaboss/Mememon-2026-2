@@ -11,11 +11,11 @@ abstract class PocionBase(override val nombre: String) extends AbstractTarget, P
       nombre == other.nombre
     else false
   
-  override def consumirsePor(personaje: Personaje): Boolean =
-    if aplicarA(personaje) then
-      personaje.quitarUtilizable(this)
-      true
-    else false
+  override def consumirsePor(personaje: Personaje): Boolean = {
+    aplicarA(personaje)
+    personaje.quitarUtilizable(this)
+    true
+  }
 
-  
+
   protected def aplicarA(personaje: Personaje): Boolean

@@ -2,8 +2,7 @@ package cl.uchile.dcc
 package controller
 
 import unidades.{Caballero, Enemigo}
-import mapajuego.Panel
-
+import mapajuego.{Panel}
 class GameControllerTest extends munit.FunSuite:
   var game: GameController = null
   var knight: Caballero = null
@@ -112,3 +111,37 @@ class GameControllerTest extends munit.FunSuite:
     assert(game.unidadesEnJuego.isEmpty)
     assert(game.unidadActual == None)
     assert(game.turnosJugados == 0)
+
+  test("juego nuevo no tiene ultimo error"):
+    assert(game.ultimoerror == None)
+
+  test("si  accion falla, se guarda motivo"):
+    game.agregarUnidad(knight)
+    game.siguienteTurno()
+    game.ejecutarAccion("Atacar", light)
+    assert(game.ultimoerror == Some("A necesita un arma para atacar"))
+
+  test("accion exitosa borra ultimo error"):
+    game.agregarUnidad(light)
+    game.siguienteTurno()
+    game.ejecutarAccion("Atacar", new Panel(1, 1))
+    assert(game.ultimoerror.isDefined)
+    assert(game.ejecutarAccion("Atacar", knight))
+    assert(game.ultimoerror == None)
+
+  test("controlador captura error de unidad derrotada que intenta actuar"):
+    game.agregarUnidad(light)
+    game.siguienteTurno()
+    light.hpPoints = 0
+    assert(!game.ejecutarAccion("Atacar", knight))
+    assert(game.ultimoerror == Some("B no tiene puntos de vida"))
+    assert(game.unidadActual == Some(light))
+    assert(knight.hpPoints == 100)
+
+  test("reiniciar borra el ultimo error"):
+    game.agregarUnidad(knight)
+    game.siguienteTurno()
+    game.ejecutarAccion("Atacar", light)
+    game.reiniciar()
+    assert(game.ultimoerror == None)
+

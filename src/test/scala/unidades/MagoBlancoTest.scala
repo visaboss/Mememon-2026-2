@@ -19,7 +19,7 @@ class MagoBlancoTest extends munit.FunSuite:
   test("Un Mago Blanco nuevo tiene el inventario vacío"):
     assert(mago.inventarioUtilizables.isEmpty)
 
-  test("Dos Magos Blancos con los mismos parámetros son iguales"):
+  test("Dos Magos Blancos con los mismos parametros son iguales"):
     val otro = new MagoBlanco("Rosa", 60, 4, 45, 50)
     assertEquals(mago, otro)
     assertEquals(otro, mago)
@@ -36,10 +36,10 @@ class MagoBlancoTest extends munit.FunSuite:
   test("Dos Magos Blancos con distinto peso no son iguales"):
     assertNotEquals(mago, new MagoBlanco("Rosa", 60, 4, 46, 50))
 
-  test("Dos Magos Blancos con distinto maná no son iguales"):
+  test("Dos Magos Blancos con distinto mana no son iguales"):
     assertNotEquals(mago, new MagoBlanco("Rosa", 60, 4, 45, 99))
 
-  test("Un Mago Blanco y un Mago Negro con los mismos parámetros no son iguales"):
+  test("Un Mago Blanco y un Mago Negro con los mismos parametros no son iguales"):
     val a: Personaje = mago
     val b: Personaje = new MagoNegro("Rosa", 60, 4, 45, 50)
     assertNotEquals(a, b)

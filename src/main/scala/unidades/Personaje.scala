@@ -7,7 +7,7 @@ import utilizables.Utilizable
 
 import utilizables.{Arma, Utilizable}
 //esto seria una clase abstracta,
-
+import excepciones.{InvalidTargetException}
 abstract class Personaje(nombre: String, hp:Int, defensa: Int, peso: Double) extends AbstractUnidad(nombre, hp, defensa, peso):
 
   var slotArma: Option[Arma] = None
@@ -28,7 +28,7 @@ abstract class Personaje(nombre: String, hp:Int, defensa: Int, peso: Double) ext
     if slotArma.isDefined then
       weight + 0.5 * slotArma.get.weight
     else
-      weight  
+      weight
 
   def inventarioUtilizables: List[Utilizable] = inventario.toList
 
@@ -46,9 +46,8 @@ abstract class Personaje(nombre: String, hp:Int, defensa: Int, peso: Double) ext
       new ConsumirPocion("Consumir pocion", inventarioUtilizables)
     )
 
-  override def doAction(accion: Accion, objetivo: Target): Boolean =
+  override protected def ejecutar(accion: Accion, objetivo: Target): Boolean =
     accion.ejecutadaPorPersonaje(this, objetivo)
-
 
   def puedeEquipar(arma: Arma): Boolean
 
@@ -56,11 +55,15 @@ abstract class Personaje(nombre: String, hp:Int, defensa: Int, peso: Double) ext
     defensePoints = defensePoints + cantidad
 
 
-  def recibirPocionMana(): Boolean = false
+  def recibirPocionMana(): Boolean =
+    throw new InvalidTargetException(s"$nombre no personaje magico entonces no puede usar poción de mana")
 
-  def recibirFuerzaMagica(): Boolean = false
+  def recibirFuerzaMagica(): Boolean =
+    throw new InvalidTargetException(s"$nombre no personaje magico entonces no puede usar poción fuerza magica")
+
 
   override def recibirCuracion(danioMagico: Int): Boolean =
+    verificarRecibe()
     curar(maxHpPoints * 20 / 100 + danioMagico / 4)
     true
 

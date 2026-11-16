@@ -10,6 +10,13 @@ abstract class PersonajeMagico(nombre: String, hp: Int, defensa: Int, peso: Doub
 
   def tieneFuerzaMagica: Boolean = fuerzaMagicaActiva
 
+  /**
+   * @return true si arma equipada es magica
+   *
+   * */
+
+  def tieneArmaMagica: Boolean = slotArma.isDefined &&  slotArma.get.esMagica
+
   def danioMagico: Int =
     val base = if slotArma.isDefined then slotArma.get.ataqueMagico else 0
     if fuerzaMagicaActiva then base * 3 / 2 else base

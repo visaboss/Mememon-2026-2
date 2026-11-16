@@ -18,7 +18,7 @@ class EspadaTest extends munit.FunSuite:
     assert(espada.weight == 5.0)
     assert(espada.owner == arthur)
 
-  test("Dos Espadas con los mismos parámetros son iguales"):
+  test("Dos Espadas con los mismos parametros son iguales"):
     val otra = new Espada("Excalibur", 50, 5, arthur)
     assertEquals(espada, otra)
     assertEquals(otra, espada)
@@ -35,8 +35,11 @@ class EspadaTest extends munit.FunSuite:
   test("Dos Espadas con distinto dueño no son iguales"):
     assertNotEquals(espada, new Espada("Excalibur", 50, 5, lancelot))
 
-  test("Una Espada y una Daga con los mismos parámetros no son iguales"):
+  test("Una Espada y una Daga con los mismos parametros no son iguales"):
     val a: Arma = espada
     val b: Arma = new Daga("Excalibur", 50, 5, arthur)
     assertNotEquals(a, b)
     assertNotEquals(b, a)
+
+  test("espada no es arma magica"):
+    assert(!espada.esMagica)

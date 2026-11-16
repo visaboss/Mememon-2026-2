@@ -3,7 +3,7 @@ package acciones
 
 import unidades.{MagoBlanco, Enemigo, Caballero, MagoNegro}
 import utilizables.{Baston}
-
+import excepciones.{InvalidActionException, InvalidTargetException}
 class PurificacionTest extends munit.FunSuite:
   var purificacion: Purificacion = null
   var white: MagoBlanco = null
@@ -35,9 +35,13 @@ class PurificacionTest extends munit.FunSuite:
 
   test("no se puede purificar a un personaje"):
     val caballero = new Caballero("Arthur", 100, 15, 70)
-    assert(!white.doAction(purificacion, caballero))
+    intercept[InvalidTargetException]{
+      white.doAction(purificacion, caballero)
+    }
     assert(caballero.hpPoints == 100)
 
   test("mago negro no puede lanzar prificacion"):
     val negro = new MagoNegro("Vivi", 60, 4, 40, 50)
-    assert(!negro.doAction(purificacion, enemy))
+    intercept[InvalidActionException]{
+      negro.doAction(purificacion, enemy)
+    }

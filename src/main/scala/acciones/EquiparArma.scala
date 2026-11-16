@@ -2,7 +2,13 @@ package cl.uchile.dcc
 package acciones
 import unidades.Personaje
 import utilizables.Utilizable
+import excepciones.InvalidActionException
 
-class EquiparArma(nombre:String,PosibleObjects : List[Utilizable]) extends AccionConUtilizables(nombre, PosibleObjects):
+
+class EquiparArma(nombre:String, objetos : List[Utilizable]) extends AccionConUtilizables(nombre, objetos):
   override def ejecutadaPorPersonaje(fuente: Personaje, objetivo: Target): Boolean =
-    PosibleObjects.contains(objetivo) && objetivo.equiparseEn(fuente)
+    if !  posibleObjects.contains(objetivo) then
+      throw new InvalidActionException(s"${fuente.nombre} no tiene objeto en inventario")
+    objetivo.equiparseEn(fuente)
+    
+    

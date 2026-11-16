@@ -21,4 +21,9 @@ trait Unidad extends Source, Target:
   var panelActual: Option[Panel]
   def barraAccion : Double
 
+  /**
+   * @return true si puntos de vida no positivos
+   * */
+  def estaDerrotada: Boolean
+
   def recibirDanioMagico(danio: Int): Unit

@@ -18,11 +18,10 @@ class Enemigo(nombre: String, hp: Int, defensa: Int, peso: Double, var attackPoi
   override def acciones: List[Accion] =
     List(new Atacar("Atacar"), new Moverse("Moverse"))
 
-  override def doAction(accion: Accion, objetivo: Target): Boolean =
+  override protected def ejecutar(accion: Accion, objetivo: Target): Boolean =
     accion.ejecutadaPorEnemigo(this, objetivo)
-  
+
   override def recibirPurificacion(danioMagico: Int): Boolean =
+    verificarRecibe()
     perderVida(hpPoints * 15 / 100 + danioMagico / 2)
     true
-
-  

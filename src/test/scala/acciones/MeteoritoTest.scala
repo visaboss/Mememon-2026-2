@@ -4,7 +4,7 @@ package acciones
 import unidades.{MagoNegro, Enemigo, MagoBlanco}
 import utilizables.{Varita}
 import mapajuego.Panel
-
+import excepciones.{InvalidTargetException, InvalidActionException, insufficienteManaException}
 
 class MeteoritoTest extends munit.FunSuite:
   var meteorito: Meteorito = null
@@ -41,15 +41,27 @@ class MeteoritoTest extends munit.FunSuite:
     assert(black.doAction(meteorito, new Panel(5, 5)))
 
   test("meteorito no puede lanzar sobre unidad"):
-    assert(!black.doAction(meteorito, enemyOne))
+    intercept[InvalidTargetException]{
+      black.doAction(meteorito, enemyOne)
+    }
     assert(enemyOne.hpPoints == 100)
 
   test("sin mana suficiente no se lanza meteorito"):
     black.manaPoints = 40
-    assert(!black.doAction(meteorito, panel))
+    intercept[insufficienteManaException]{
+      black.doAction(meteorito, panel)
+    }
     assert(enemyOne.hpPoints == 100)
 
   test("mago blanco no puede lanzar meteorito"):
     val blanco = new MagoBlanco("A", 60, 4, 45, 60)
-    assert(!blanco.doAction(meteorito, panel))
+    intercept[InvalidActionException]{
+      blanco.doAction(meteorito, panel)
+    }
 
+
+  test("meteorito no daña a las unidades derrotadas del panel"):
+    enemyOne.hpPoints = 0
+    assert(black.doAction(meteorito, panel))
+    assert(enemyOne.hpPoints == 0)
+    assert(enemyTwo.hpPoints == 50)

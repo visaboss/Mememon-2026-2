@@ -2,7 +2,7 @@ package cl.uchile.dcc
 package acciones
 import utilizables.{Espada,Daga,Arco,Varita,Baston, Fortaleza}
 import unidades.{Caballero, Enemigo, MagoNegro, Arquero, Ladron, MagoBlanco}
-
+import excepciones.{InvalidActionException,InvalidTargetException, invalidWeaponException}
 class EquiparArmaTest extends munit.FunSuite:
   var knight: Caballero = null
   var sword: Espada = null
@@ -41,22 +41,30 @@ class EquiparArmaTest extends munit.FunSuite:
 
   test("no puede equipar un arma que no esta entre posibles objetos"):
     val equipar = new EquiparArma("Equipar arma", List())
-    assert(!knight.doAction(equipar, sword))
+    intercept[InvalidActionException]{
+      knight.doAction(equipar, sword)
+    }
     assert(knight.slotArma == None)
 
   test("personaje no puede equiparse arma que su clase no permite"):
     knight.agregarUtilizable(baston)
-    assert(!knight.doAction(knight.buscarAccion("Equipar arma").get, baston))
+    intercept[invalidWeaponException]{
+      knight.doAction(knight.buscarAccion("Equipar arma").get, baston)
+    }
     assert(knight.slotArma == None)
 
-  test("no se puede equipar poción"):
+  test("no se puede equipar pocion"):
     val pocion = new Fortaleza("A")
     knight.agregarUtilizable(pocion)
-    assert(!knight.doAction(knight.buscarAccion("Equipar arma").get, pocion))
+    intercept[InvalidTargetException]{
+      knight.doAction(knight.buscarAccion("Equipar arma").get, pocion)
+    }
 
   test("enemigo no puede equiparse armas"):
     val enemigo = new Enemigo("goblin", 100, 10, 30, 20)
-    assert(!enemigo.doAction(new EquiparArma("Equipar arma", List(sword)), sword))
+    intercept[InvalidActionException]{
+      enemigo.doAction(new EquiparArma("Equipar arma", List(sword)), sword)
+    }
 
   test("mago se equipa arma que su clase permite"):
     val mago = new MagoNegro("A", 60, 4, 40, 50)
@@ -95,7 +103,7 @@ class EquiparArmaTest extends munit.FunSuite:
     assert(mago.puedeEquipar(varita))
     assert(mago.puedeEquipar(baston))
 
-  test("mago blanco puede equiparse arco, varita y bastón"):
+  test("mago blanco puede equiparse arco, varita y baston"):
     val mago = new MagoBlanco("Rosa", 60, 4, 45, 50)
     assert(!mago.puedeEquipar(sword))
     assert(!mago.puedeEquipar(dagger))

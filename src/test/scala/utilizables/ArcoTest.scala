@@ -18,7 +18,7 @@ class ArcoTest extends munit.FunSuite:
     assert(arco.weight == 3.0)
     assert(arco.owner == arthur)
 
-  test("Dos Arcos con los mismos parámetros son iguales"):
+  test("Dos Arcos con los mismos parametros son iguales"):
     val otro = new Arco("Halcón", 40, 3, arthur)
     assertEquals(arco, otro)
     assertEquals(otro, arco)
@@ -35,7 +35,7 @@ class ArcoTest extends munit.FunSuite:
   test("Dos Arcos con distinto dueño no son iguales"):
     assertNotEquals(arco, new Arco("Halcón", 40, 3, lancelot))
 
-  test("Un Arco y una Espada con los mismos parámetros no son iguales"):
+  test("Un Arco y una Espada con los mismos parametros no son iguales"):
     val a: Arma = arco
     val b: Arma = new Espada("Halcón", 40, 3, arthur)
     assertNotEquals(a, b)

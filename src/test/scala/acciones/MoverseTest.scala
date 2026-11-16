@@ -2,7 +2,7 @@ package cl.uchile.dcc
 package acciones
 import mapajuego.Panel
 import unidades.{Caballero, Enemigo}
-
+import excepciones.{InvalidMovementException, InvalidTargetException}
 
 class MoverseTest extends munit.FunSuite:
   var move: Moverse = null
@@ -39,14 +39,24 @@ class MoverseTest extends munit.FunSuite:
 
   test("no se puede mover a panel no vecino"):
     origin.addUnit(knight)
-    assert(!knight.doAction(move, lejano))
+    intercept[InvalidMovementException]{
+      knight.doAction(move, lejano)
+    }
     assert(origin.unitsInPanel.contains(knight))
     assert(lejano.unitsInPanel.isEmpty)
 
   test("no se puede mover a mismo panel en que esta"):
     origin.addUnit(knight)
-    assert(!knight.doAction(move, origin))
+    intercept[InvalidMovementException]{
+      knight.doAction(move, origin)
+    }
 
   test("unidad que no esta en ningún panel no se mueve"):
-    assert(!knight.doAction(move, neighbor))
-    assert(neighbor.unitsInPanel.isEmpty) 
+    intercept[InvalidMovementException]{
+      knight.doAction(move, neighbor)
+    }
+    assert(neighbor.unitsInPanel.isEmpty)
+
+  test("no se puede mover hacia una unidad"):
+    origin.addUnit(knight)
+    intercept[InvalidTargetException](knight.doAction(move, enemy))

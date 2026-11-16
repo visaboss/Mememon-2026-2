@@ -18,7 +18,7 @@ class DagaTest extends munit.FunSuite:
     assert(daga.weight == 2.0)
     assert(daga.owner == arthur)
 
-  test("Dos Dagas con los mismos parámetros son iguales"):
+  test("Dos Dagas con los mismos parametros son iguales"):
     val otra = new Daga("Filo", 30, 2, arthur)
     assertEquals(daga, otra)
     assertEquals(otra, daga)
@@ -35,7 +35,7 @@ class DagaTest extends munit.FunSuite:
   test("Dos Dagas con distinto dueño no son iguales"):
     assertNotEquals(daga, new Daga("Filo", 30, 2, lancelot))
 
-  test("Una Daga y un Arco con los mismos parámetros no son iguales"):
+  test("Una Daga y un Arco con los mismos parametros no son iguales"):
     val a: Arma = daga
     val b: Arma = new Arco("Filo", 30, 2, arthur)
     assertNotEquals(a, b)

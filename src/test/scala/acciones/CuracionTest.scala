@@ -1,8 +1,8 @@
 package cl.uchile.dcc
 package acciones
 import unidades.{MagoBlanco, MagoNegro, Caballero, Enemigo}
-import utilizables.{Baston}
-
+import utilizables.{Baston, Arco}
+import excepciones.{missingWeaponException, InvalidTargetException, InvalidActionException}
 class CuracionTest extends munit.FunSuite:
   var curacion: Curacion = null
   var white: MagoBlanco = null
@@ -19,7 +19,7 @@ class CuracionTest extends munit.FunSuite:
     assertEquals(accion.nombre, "curacion")
     assertEquals(accion.costoMana, 15)
 
-  test("cura 20% de vida maxima mas daño mágico / 4"):
+  test("cura 20% de vida maxima mas daño magico / 4"):
     knight.hpPoints = 50
     assert(white.doAction(curacion, knight))
     assert(knight.hpPoints == 75)
@@ -38,11 +38,18 @@ class CuracionTest extends munit.FunSuite:
     assert(white.doAction(curacion, white))
     assert(white.hpPoints == 47)
 
-  test("se puede curar a un enemigo"):
+  test("no se puede curar a un enemigo"):
     val enemigo = new Enemigo("goblin", 100, 10, 30, 20)
-    assert(!white.doAction(curacion, enemigo))
+    intercept[InvalidTargetException](white.doAction(curacion, enemigo))
     assert(white.manaPoints == 50.0)
 
   test("mago negro no puede lanzar curacion"):
     val negro = new MagoNegro("Vivi", 60, 4, 40, 50)
-    assert(!negro.doAction(curacion, knight))
+    intercept[InvalidActionException](negro.doAction(curacion, knight))
+
+  test("mago blanco sin arma magica no puede curar"):
+    white.slotArma = Some(new Arco("D", 40, 3, white))
+    knight.hpPoints = 50
+    intercept[missingWeaponException](white.doAction(curacion, knight))
+    assert(knight.hpPoints == 50)
+    assert(white.manaPoints == 50.0)

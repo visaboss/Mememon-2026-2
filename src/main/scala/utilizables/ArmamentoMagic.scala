@@ -10,4 +10,9 @@ abstract class ArmaMagic(nombre: String, ataque: Int,
       attackPointsM == obj.asInstanceOf[ArmaMagic].attackPointsM
 
   override def ataqueMagico: Int = attackPointsM
+
+  /**
+   * @return valor de verdad sobre si es magica, lo cual lo es
+   * */
+  override def esMagica: Boolean = true
   

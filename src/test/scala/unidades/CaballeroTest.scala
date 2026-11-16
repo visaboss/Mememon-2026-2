@@ -18,7 +18,7 @@ class CaballeroTest extends munit.FunSuite:
   test("Un Caballero nuevo tiene el inventario vacío"):
     assert(caballero.inventarioUtilizables.isEmpty)
 
-  test("Dos Caballeros con los mismos parámetros son iguales"):
+  test("Dos Caballeros con los mismos parametros son iguales"):
     val otro = new Caballero("Arthur", 100, 15, 70)
     assertEquals(caballero, otro)
     assertEquals(otro, caballero)
@@ -35,7 +35,7 @@ class CaballeroTest extends munit.FunSuite:
   test("Dos Caballeros con distinto peso no son iguales"):
     assertNotEquals(caballero, new Caballero("Arthur", 100, 15, 71))
 
-  test("Un Caballero y un Arquero con los mismos parámetros no son iguales"):
+  test("Un Caballero y un Arquero con los mismos parametros no son iguales"):
     val a: Personaje = caballero
     val b: Personaje = new Arquero("Arthur", 100, 15, 70)
     assertNotEquals(a, b)

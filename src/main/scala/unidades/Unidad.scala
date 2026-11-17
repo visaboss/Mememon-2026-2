@@ -2,6 +2,8 @@ package cl.uchile.dcc
 package unidades
 import acciones.{Source, Target}
 import mapajuego.Panel
+
+import cl.uchile.dcc.observer.Subject
 //T esta tiene el mismo-ish nombre que el nombre de carpeta, por lo que de aqui sale
 //T todo el resto,
 //T dealmente como de aqui va a salir todo lo demas, es muy,general para ser ocupado  entonces tiene que ser trait

@@ -1,0 +1,49 @@
+package cl.uchile.dcc
+package utilizables
+import unidades.{Caballero, Personaje}
+
+class VaritaTest extends munit.FunSuite:
+  var arthur: Personaje = null
+  var artur2: Personaje = null
+  var varita: Varita = null
+
+  override def beforeEach(context: BeforeEach): Unit =
+    arthur = new Caballero("Arthur", 100, 15, 70)
+    artur2 = new Caballero("Lancelot", 90, 12, 65)
+    varita = new Varita("Rayo", 10, 1, arthur, 30)
+
+  test("Una Varita se crea con los valores correctos"):
+    assert(varita.nombre == "Rayo")
+    assert(varita.attackPoints == 10)
+    assert(varita.weight == 1.0)
+    assert(varita.owner == arthur)
+    assert(varita.attackPointsM == 30)
+
+  test("Dos Varitas con los mismos parametros son iguales"):
+    val otra = new Varita("Rayo", 10, 1, arthur, 30)
+    assertEquals(varita, otra)
+    assertEquals(otra, varita)
+
+  test("Dos Varitas con distinto nombre no son iguales"):
+    assertNotEquals(varita, new Varita("Otra", 10, 1, arthur, 30))
+
+  test("Dos Varitas con distintos puntos de ataque no son iguales"):
+    assertNotEquals(varita, new Varita("Rayo", 11, 1, arthur, 30))
+
+  test("Dos Varitas con distinto peso no son iguales"):
+    assertNotEquals(varita, new Varita("Rayo", 10, 2, arthur, 30))
+
+  test("Dos Varitas con distinto dueño no son iguales"):
+    assertNotEquals(varita, new Varita("Rayo", 10, 1, artur2, 30))
+
+  test("Dos Varitas con distinto ataque magico no son iguales"):
+    assertNotEquals(varita, new Varita("Rayo", 10, 1, arthur, 31))
+
+  test("Una Varita y un Bastón con los mismos parametros no son iguales"):
+    val a: Arma = varita
+    val b: Arma = new Baston("Rayo", 10, 1, arthur, 30)
+    assertNotEquals(a, b)
+    assertNotEquals(b, a)
+
+  test("varita es arma magica"):
+    assert(varita.esMagica)

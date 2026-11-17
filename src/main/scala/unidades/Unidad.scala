@@ -15,7 +15,7 @@ import cl.uchile.dcc.observer.Subject
 
 
 //notar que unidad igual a nombre de file, pero esto es solo convencion
-trait Unidad extends Source, Target:
+trait Unidad extends Source, Target, Subject[Unidad]:
   val nombre:String
   var hpPoints: Int
   var defensePoints: Int

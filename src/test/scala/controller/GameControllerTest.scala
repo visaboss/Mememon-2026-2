@@ -3,6 +3,10 @@ package controller
 
 import unidades.{Caballero, Enemigo}
 import mapajuego.{Panel}
+import jugadores.Jugador
+import utilizables.Espada
+
+
 class GameControllerTest extends munit.FunSuite:
   var game: GameController = null
   var knight: Caballero = null
@@ -145,3 +149,80 @@ class GameControllerTest extends munit.FunSuite:
     game.reiniciar()
     assert(game.ultimoerror == None)
 
+
+    /** prepara partida de dos jugadores, bando con un caballero armado que
+     * juega primero, y bando opuesto con unidades indicadas.
+     */
+    def prepararPartida(enemys: List[Enemigo]): Caballero =
+      val heroe = new Caballero("Heroe", 100, 15, 5) // barra 5 + 0.5 * 2 = 6
+      heroe.slotArma = Some(new Espada("Espada", 50, 2, heroe))
+      val heroes = new Jugador("Heroes")
+      heroes.agregarUnidad(heroe)
+      val rivals = new Jugador("Enemigos")
+      for enemy <- enemys do
+        rivals.agregarUnidad(enemy)
+      game.agregarJugador(heroes)
+      game.agregarJugador(rivals)
+      heroe
+
+    test("juego nuevo no esta terminado y no tiene mensaje"):
+      assert(!game.juegoTerminado)
+      assert(game.ultimoMensaje == None)
+
+    test("agregar jugador agrega sus unidades a combate"):
+      val heroe = prepararPartida(List(light))
+      assert(game.unidadesEnJuego == List(heroe, light))
+
+    test("agregar dos veces mismo jugador no duplica sus unidades"):
+      val jugador = new Jugador("Enemigos")
+      jugador.agregarUnidad(light)
+      game.agregarJugador(jugador)
+      game.agregarJugador(jugador)
+      assert(game.unidadesEnJuego == List(light))
+
+    test("accion normal entrega el mensaje de accion"):
+      game.agregarUnidad(light)
+      game.siguienteTurno()
+      assert(game.ejecutarAccion("Atacar", knight))
+      assert(game.ultimoMensaje == Some("B realizo Atacar"))
+      assert(!game.juegoTerminado)
+
+    test("si rival aun tiene unidades vivas, juego sigue"):
+      val heroe = prepararPartida(List(light, medium))
+      assert(game.siguienteTurno() == Some(heroe))
+      assert(game.ejecutarAccion("Atacar", light))
+      assert(light.hpPoints == 0)
+      assert(!game.juegoTerminado)
+      assert(game.ultimoMensaje == Some("Heroe realizo Atacar"))
+
+    test("al derrotar a ultimo enemigo, el controlador es notificado y juego termina"):
+      val heroe = prepararPartida(List(light))
+      assert(game.siguienteTurno() == Some(heroe))
+      assert(game.ejecutarAccion("Atacar", light))
+      assert(game.juegoTerminado)
+      assert(game.ultimoMensaje == Some("Fin del juego: Enemigos fue derrotado"))
+      assert(game.ultimoMensaje != Some("Heroe realizo Atacar"))
+
+    test("con juego terminado no se pueden ejecutar acciones"):
+      val heroe = prepararPartida(List(light))
+      game.siguienteTurno()
+      game.ejecutarAccion("Atacar", light)
+      assert(!game.ejecutarAccion("Atacar", heroe))
+      assert(game.ultimoerror == Some("El juego ya termino"))
+      assert(heroe.hpPoints == 100)
+
+    test("con juego terminado no hay siguiente turno"):
+      prepararPartida(List(light))
+      game.siguienteTurno()
+      game.ejecutarAccion("Atacar", light)
+      assert(game.siguienteTurno() == None)
+      assert(game.unidadActual == None)
+
+    test("reiniciar deja juego sin terminar y sin mensaje"):
+      prepararPartida(List(light))
+      game.siguienteTurno()
+      game.ejecutarAccion("Atacar", light)
+      game.reiniciar()
+      assert(!game.juegoTerminado)
+      assert(game.ultimoMensaje == None)
+      assert(game.unidadesEnJuego.isEmpty)

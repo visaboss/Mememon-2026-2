@@ -3,7 +3,8 @@ package unidades
 import acciones.{AbstractTarget, Accion,Target}
 import mapajuego.Panel
 import excepciones.defeatedUnitException
-
+import observer.Observer
+import scala.collection.mutable
 
 
 abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
@@ -14,6 +15,18 @@ abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
   val maxHpPoints: Int = hpPoints
 
   var panelActual: Option[Panel] = None
+
+  private val observers: mutable.Set[Observer[Unidad]] =
+    mutable.LinkedHashSet.empty[Observer[Unidad]]
+
+  override def attach(observer: Observer[Unidad]): Unit =
+    observers += observer
+
+  override def detach(observer: Observer[Unidad]): Unit =
+    observers -= observer
+
+  override def notifyObservers(notification: Unidad): Unit =
+    for observer <- observers do observer.update(this, notification)
 
   override def estaDerrotada: Boolean = hpPoints <=0
 
@@ -57,8 +70,12 @@ abstract class AbstractUnidad(override val nombre: String, var hpPoints: Int,
     hpPoints = hpPoints + cantidad
     if hpPoints > maxHpPoints then hpPoints = maxHpPoints
 
+  /** Resta puntos de vida, si unidad queda derrotada avisa observadores.
+   *
+   * @param cantidad puntos de vida perdidos
+   */
   protected def perderVida(cantidad: Int): Unit =
-    if cantidad > 0 then
+    if cantidad > 0 && !estaDerrotada then
       hpPoints = hpPoints - cantidad
       if hpPoints < 0 then hpPoints = 0
-
+      if estaDerrotada then notifyObservers(this)
